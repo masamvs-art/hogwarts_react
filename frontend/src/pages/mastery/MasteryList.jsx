@@ -20,6 +20,10 @@ function MasteryList() {
   })
 
   useEffect(() => {
+    document.title = 'Hogwarts CRUD - Освоение'
+  }, [])
+
+  useEffect(() => {
     const loadFilterData = async () => {
       try {
         const [studentsData, spellsData] = await Promise.all([getStudents(), getSpells()])

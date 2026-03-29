@@ -1,11 +1,11 @@
 @use './variables' as *;
 
 .form {
-  max-width: 600px;
+  max-width: 640px;
   padding: 18px;
-  border: 1px solid $border;
+  border: 1px solid rgba(201, 168, 76, 0.35);
   border-radius: 12px;
-  background: #fff7e1;
+  background: rgba(18, 12, 8, 0.85);
 }
 
 .form__field {
@@ -16,6 +16,7 @@
 }
 
 .form__field span {
+  color: #dfcfab;
   font-weight: 600;
 }
 
@@ -24,18 +25,19 @@
 .form__field textarea {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid $border;
+  border: 1px solid rgba(201, 168, 76, 0.35);
   border-radius: 8px;
   font: inherit;
-  color: $text-primary;
-  background: #fffcf3;
+  color: $color-text;
+  background: rgba(11, 8, 6, 0.88);
 }
 
 .form__field input:focus,
 .form__field select:focus,
 .form__field textarea:focus {
-  outline: 2px solid rgba(138, 31, 17, 0.25);
-  border-color: $accent;
+  outline: none;
+  border-color: $color-gold;
+  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.25);
 }
 
 .form__actions {
@@ -50,9 +52,9 @@
   gap: 10px;
   margin-bottom: 14px;
   padding: 14px;
-  border: 1px solid $border;
+  border: 1px solid rgba(201, 168, 76, 0.32);
   border-radius: 12px;
-  background: #fff8e9;
+  background: rgba(18, 12, 8, 0.78);
 }
 
 .filter-grid .form__field {

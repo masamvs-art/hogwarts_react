@@ -11,20 +11,24 @@ function SpellList() {
   const [selected, setSelected] = useState(null)
   const [deleting, setDeleting] = useState(false)
 
-  const loadSpells = async () => {
-    setLoading(true)
-    setError('')
-    try {
-      const data = await getSpells()
-      setItems(Array.isArray(data) ? data : [])
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
-    }
-  }
+  useEffect(() => {
+    document.title = 'Hogwarts CRUD - Заклинания'
+  }, [])
 
   useEffect(() => {
+    const loadSpells = async () => {
+      setLoading(true)
+      setError('')
+      try {
+        const data = await getSpells()
+        setItems(Array.isArray(data) ? data : [])
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
     loadSpells()
   }, [])
 

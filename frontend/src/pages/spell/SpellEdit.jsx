@@ -7,14 +7,18 @@ function SpellEdit() {
   const navigate = useNavigate()
   const [name, setName] = useState('')
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+
+  useEffect(() => {
+    document.title = 'Hogwarts CRUD - Редактировать заклинание'
+  }, [])
 
   useEffect(() => {
     const loadSpell = async () => {
       setLoading(true)
       setError('')
-
       try {
         const data = await getSpell(id)
         setName(data.name ?? '')
@@ -28,9 +32,22 @@ function SpellEdit() {
     loadSpell()
   }, [id])
 
+  useEffect(() => {
+    if (!success) {
+      return undefined
+    }
+
+    const timer = setTimeout(() => {
+      navigate('/spell')
+    }, 2000)
+
+    return () => clearTimeout(timer)
+  }, [success, navigate])
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     setError('')
+    setSuccess('')
 
     if (!name.trim()) {
       setError('Введите название заклинания')
@@ -40,7 +57,7 @@ function SpellEdit() {
     setSaving(true)
     try {
       await updateSpell({ id: Number(id), name: name.trim() })
-      navigate('/spell')
+      setSuccess('Изменения сохранены. Переходим к списку...')
     } catch (err) {
       setError(err.message)
     } finally {
@@ -54,6 +71,7 @@ function SpellEdit() {
       <p className="subtitle">Измените название и сохраните изменения.</p>
 
       {error && <div className="alert alert--error">{error}</div>}
+      {success && <div className="alert alert--success">{success}</div>}
 
       {loading ? (
         <p>Загрузка...</p>
@@ -71,9 +89,9 @@ function SpellEdit() {
 
           <div className="form__actions">
             <Link className="btn btn--ghost" to="/spell">
-              Назад
+              ← Назад к списку
             </Link>
-            <button type="submit" className="btn btn--edit" disabled={saving}>
+            <button type="submit" className="btn btn--edit" disabled={saving || !!success}>
               {saving ? 'Сохранение...' : 'Сохранить'}
             </button>
           </div>

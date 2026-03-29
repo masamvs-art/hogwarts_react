@@ -1,9 +1,27 @@
-$bg-paper: #f7f2dd;
-$bg-header: #231710;
-$bg-card: #fff4d6;
-$text-primary: #2b2018;
-$text-muted: #5f4c3d;
-$accent: #8a1f11;
-$accent-soft: #cda266;
-$border: #d7be91;
-$shadow: 0 10px 26px rgba(35, 23, 16, 0.18);
+$color-gold: #c9a84c;
+$color-dark: #0d0d0d;
+$color-red: #740001;
+$color-bg: #0a0805;
+$color-border: #5c4a1e;
+$color-text: #f0e6cc;
+$color-text-muted: #9e8f72;
+$color-success: #2d6a2d;
+$color-danger: #8b1a1a;
+$color-warning: #7a6010;
+
+$font-heading: 'Cinzel', serif;
+$font-body: 'Lora', serif;
+
+$radius: 8px;
+$radius-lg: 12px;
+$gap: 1rem;
+
+$bg-paper: $color-bg;
+$bg-header: #170f0a;
+$bg-card: rgba(20, 14, 10, 0.88);
+$text-primary: $color-text;
+$text-muted: $color-text-muted;
+$accent: $color-gold;
+$accent-soft: #d9bb72;
+$border: $color-border;
+$shadow: 0 14px 30px rgba(0, 0, 0, 0.35);

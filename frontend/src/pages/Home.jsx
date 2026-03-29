@@ -1,19 +1,24 @@
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function Home() {
+  useEffect(() => {
+    document.title = 'Hogwarts CRUD - Главная'
+  }, [])
+
   const cards = [
     {
-      title: 'Заклинания',
+      title: '⚡ Заклинания',
       description: 'Справочник магических заклинаний и их обновление.',
       to: '/spell',
     },
     {
-      title: 'Студенты',
+      title: '🧙 Студенты',
       description: 'Учёт учеников, факультетов и курсов обучения.',
       to: '/student',
     },
     {
-      title: 'Освоение',
+      title: '🔮 Освоение заклинаний',
       description: 'Связь учеников и изученных ими заклинаний.',
       to: '/mastery',
     },

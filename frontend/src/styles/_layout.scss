@@ -1,12 +1,36 @@
 @use './variables' as *;
 
 body {
+  position: relative;
   min-height: 100vh;
-  font-family: 'Lora', serif;
+  font-family: $font-body;
   color: $text-primary;
+  background-color: $bg-paper;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
   background:
-    radial-gradient(circle at top right, rgba(205, 162, 102, 0.4), transparent 40%),
-    linear-gradient(180deg, #fdf9ea 0%, $bg-paper 100%);
+    linear-gradient(rgba(8, 6, 4, 0.62), rgba(8, 6, 4, 0.8)),
+    url('https://images.unsplash.com/photo-1473177104440-ffee2f376098?auto=format&fit=crop&w=2200&q=80') center/cover no-repeat;
+  background-attachment: fixed;
+  z-index: -2;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(201, 168, 76, 0.16), transparent 45%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
 }
 
 .container {
@@ -18,9 +42,9 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
-  border-bottom: 1px solid rgba(215, 190, 145, 0.45);
-  background: rgba(35, 23, 16, 0.94);
-  backdrop-filter: blur(4px);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.28);
+  background: rgba(18, 12, 8, 0.88);
+  backdrop-filter: blur(8px);
 }
 
 .topbar__nav {
@@ -32,10 +56,10 @@ body {
 }
 
 .brand {
-  font-family: 'Cinzel', serif;
+  font-family: $font-heading;
   font-size: 1.2rem;
   font-weight: 700;
-  color: #ffe8bc;
+  color: #f3ddab;
 }
 
 .topbar__links {
@@ -46,15 +70,21 @@ body {
 
 .nav-link {
   padding: 8px 12px;
+  border: 1px solid transparent;
   border-radius: 8px;
-  color: #f5dfb8;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  color: #d5c29a;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-.nav-link:hover,
-.nav-link.active {
-  color: #fff9ea;
-  background: rgba(205, 162, 102, 0.2);
+.nav-link:hover {
+  color: #f7e8c8;
+  background: rgba(201, 168, 76, 0.12);
+}
+
+.nav-link--active {
+  color: #f9e7be;
+  border-color: rgba(201, 168, 76, 0.58);
+  background: rgba(201, 168, 76, 0.18);
 }
 
 main {
@@ -63,8 +93,9 @@ main {
 
 .title {
   margin-bottom: 8px;
-  font-family: 'Cinzel', serif;
+  font-family: $font-heading;
   font-size: clamp(1.8rem, 2.4vw, 2.6rem);
+  color: #f4e0af;
 }
 
 .subtitle {
@@ -93,26 +124,27 @@ main {
 .home-card {
   height: 100%;
   padding: 18px;
-  border: 1px solid $border;
+  border: 1px solid rgba(201, 168, 76, 0.4);
   border-radius: 14px;
   background: $bg-card;
   box-shadow: $shadow;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .home-card h2 {
   margin-bottom: 8px;
-  font-family: 'Cinzel', serif;
-  color: $accent;
+  font-family: $font-heading;
+  color: #f3d998;
 }
 
 .home-card p {
-  color: $text-muted;
+  color: #d1c4a6;
 }
 
 .home-card:hover {
+  border-color: $color-gold;
   transform: translateY(-3px);
-  box-shadow: 0 14px 28px rgba(35, 23, 16, 0.22);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.42);
 }
 
 @media (max-width: 720px) {

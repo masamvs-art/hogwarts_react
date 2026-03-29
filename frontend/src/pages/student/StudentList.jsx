@@ -25,6 +25,10 @@ function StudentList() {
     is_deleted: '',
   })
 
+  useEffect(() => {
+    document.title = 'Hogwarts CRUD - Студенты'
+  }, [])
+
   const query = useMemo(() => {
     const result = {}
     Object.entries(filters).forEach(([key, value]) => {

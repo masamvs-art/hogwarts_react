@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom'
 
 function Navbar() {
+  const linkClass = ({ isActive }) =>
+    isActive ? 'nav-link nav-link--active' : 'nav-link'
+
   return (
     <header className="topbar">
       <nav className="container topbar__nav">
@@ -8,13 +11,13 @@ function Navbar() {
           Hogwarts CRUD
         </NavLink>
         <div className="topbar__links">
-          <NavLink to="/spell" className="nav-link">
+          <NavLink to="/spell" className={linkClass}>
             Заклинания
           </NavLink>
-          <NavLink to="/student" className="nav-link">
+          <NavLink to="/student" className={linkClass}>
             Студенты
           </NavLink>
-          <NavLink to="/mastery" className="nav-link">
+          <NavLink to="/mastery" className={linkClass}>
             Освоение
           </NavLink>
         </div>

@@ -1,16 +1,34 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createSpell } from '@/api/spell'
 
 function SpellAdd() {
   const navigate = useNavigate()
   const [name, setName] = useState('')
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const [saving, setSaving] = useState(false)
+
+  useEffect(() => {
+    document.title = 'Hogwarts CRUD - Добавить заклинание'
+  }, [])
+
+  useEffect(() => {
+    if (!success) {
+      return undefined
+    }
+
+    const timer = setTimeout(() => {
+      navigate('/spell')
+    }, 2000)
+
+    return () => clearTimeout(timer)
+  }, [success, navigate])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     setError('')
+    setSuccess('')
 
     if (!name.trim()) {
       setError('Введите название заклинания')
@@ -20,7 +38,7 @@ function SpellAdd() {
     setSaving(true)
     try {
       await createSpell({ name: name.trim() })
-      navigate('/spell')
+      setSuccess('Заклинание успешно добавлено. Переходим к списку...')
     } catch (err) {
       setError(err.message)
     } finally {
@@ -34,6 +52,7 @@ function SpellAdd() {
       <p className="subtitle">Создайте новую запись в справочнике.</p>
 
       {error && <div className="alert alert--error">{error}</div>}
+      {success && <div className="alert alert--success">{success}</div>}
 
       <form className="form" onSubmit={handleSubmit}>
         <label className="form__field">
@@ -49,9 +68,9 @@ function SpellAdd() {
 
         <div className="form__actions">
           <Link className="btn btn--ghost" to="/spell">
-            Назад
+            ← Назад к списку
           </Link>
-          <button type="submit" className="btn btn--add" disabled={saving}>
+          <button type="submit" className="btn btn--add" disabled={saving || !!success}>
             {saving ? 'Сохранение...' : 'Сохранить'}
           </button>
         </div>

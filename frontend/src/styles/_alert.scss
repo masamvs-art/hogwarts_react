@@ -6,7 +6,13 @@
 }
 
 .alert--error {
-  color: #6c1309;
-  background: #fbe2dd;
-  border-color: #d79086;
+  color: #ffd7d0;
+  background: rgba(139, 26, 26, 0.25);
+  border-color: rgba(212, 102, 102, 0.65);
+}
+
+.alert--success {
+  color: #d8f3db;
+  background: rgba(45, 106, 45, 0.24);
+  border-color: rgba(111, 179, 111, 0.62);
 }

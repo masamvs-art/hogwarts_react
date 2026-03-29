@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createStudent } from '@/api/student'
 
 const HOUSES = ['Гриффиндор', 'Слизерин', 'Когтевран', 'Пуффендуй']
@@ -14,7 +14,24 @@ function StudentAdd() {
     is_deleted: '0',
   })
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const [saving, setSaving] = useState(false)
+
+  useEffect(() => {
+    document.title = 'Hogwarts CRUD - Добавить студента'
+  }, [])
+
+  useEffect(() => {
+    if (!success) {
+      return undefined
+    }
+
+    const timer = setTimeout(() => {
+      navigate('/student')
+    }, 2000)
+
+    return () => clearTimeout(timer)
+  }, [success, navigate])
 
   const onChange = (event) => {
     const { name, value } = event.target
@@ -24,6 +41,7 @@ function StudentAdd() {
   const onSubmit = async (event) => {
     event.preventDefault()
     setError('')
+    setSuccess('')
 
     if (!form.name.trim() || !form.surname.trim()) {
       setError('Имя и фамилия обязательны')
@@ -39,7 +57,7 @@ function StudentAdd() {
         course: form.course === '' ? null : Number(form.course),
         is_deleted: Number(form.is_deleted),
       })
-      navigate('/student')
+      setSuccess('Студент успешно добавлен. Переходим к списку...')
     } catch (err) {
       setError(err.message)
     } finally {
@@ -53,6 +71,7 @@ function StudentAdd() {
       <p className="subtitle">Создание новой записи студента.</p>
 
       {error && <div className="alert alert--error">{error}</div>}
+      {success && <div className="alert alert--success">{success}</div>}
 
       <form className="form" onSubmit={onSubmit}>
         <label className="form__field">
@@ -91,9 +110,9 @@ function StudentAdd() {
 
         <div className="form__actions">
           <Link className="btn btn--ghost" to="/student">
-            Назад
+            ← Назад к списку
           </Link>
-          <button type="submit" className="btn btn--add" disabled={saving}>
+          <button type="submit" className="btn btn--add" disabled={saving || !!success}>
             {saving ? 'Сохранение...' : 'Сохранить'}
           </button>
         </div>

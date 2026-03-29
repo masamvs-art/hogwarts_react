@@ -16,8 +16,13 @@ function StudentEdit() {
     spell_count: '0',
   })
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+
+  useEffect(() => {
+    document.title = 'Hogwarts CRUD - Редактировать студента'
+  }, [])
 
   useEffect(() => {
     const loadStudent = async () => {
@@ -43,6 +48,18 @@ function StudentEdit() {
     loadStudent()
   }, [id])
 
+  useEffect(() => {
+    if (!success) {
+      return undefined
+    }
+
+    const timer = setTimeout(() => {
+      navigate('/student')
+    }, 2000)
+
+    return () => clearTimeout(timer)
+  }, [success, navigate])
+
   const onChange = (event) => {
     const { name, value } = event.target
     setForm((current) => ({ ...current, [name]: value }))
@@ -51,6 +68,7 @@ function StudentEdit() {
   const onSubmit = async (event) => {
     event.preventDefault()
     setError('')
+    setSuccess('')
 
     if (!form.name.trim() || !form.surname.trim()) {
       setError('Имя и фамилия обязательны')
@@ -68,7 +86,7 @@ function StudentEdit() {
         is_deleted: Number(form.is_deleted),
         spell_count: Number(form.spell_count),
       })
-      navigate('/student')
+      setSuccess('Изменения сохранены. Переходим к списку...')
     } catch (err) {
       setError(err.message)
     } finally {
@@ -82,6 +100,7 @@ function StudentEdit() {
       <p className="subtitle">Обновите данные студента и сохраните изменения.</p>
 
       {error && <div className="alert alert--error">{error}</div>}
+      {success && <div className="alert alert--success">{success}</div>}
 
       {loading ? (
         <p>Загрузка...</p>
@@ -134,9 +153,9 @@ function StudentEdit() {
 
           <div className="form__actions">
             <Link className="btn btn--ghost" to="/student">
-              Назад
+              ← Назад к списку
             </Link>
-            <button type="submit" className="btn btn--edit" disabled={saving}>
+            <button type="submit" className="btn btn--edit" disabled={saving || !!success}>
               {saving ? 'Сохранение...' : 'Сохранить'}
             </button>
           </div>
