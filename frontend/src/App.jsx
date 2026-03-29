@@ -5,6 +5,8 @@ import SpellList from '@/pages/spell/SpellList'
 import SpellAdd from '@/pages/spell/SpellAdd'
 import SpellEdit from '@/pages/spell/SpellEdit'
 import StudentList from '@/pages/student/StudentList'
+import StudentAdd from '@/pages/student/StudentAdd'
+import StudentEdit from '@/pages/student/StudentEdit'
 import MasteryList from '@/pages/mastery/MasteryList'
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
           <Route path="/spell/add" element={<SpellAdd />} />
           <Route path="/spell/edit/:id" element={<SpellEdit />} />
           <Route path="/student" element={<StudentList />} />
+          <Route path="/student/add" element={<StudentAdd />} />
+          <Route path="/student/edit/:id" element={<StudentEdit />} />
           <Route path="/mastery" element={<MasteryList />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
