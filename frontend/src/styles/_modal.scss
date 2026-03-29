@@ -1,0 +1,33 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(21, 14, 10, 0.64);
+  z-index: 100;
+  padding: 16px;
+}
+
+.modal {
+  width: min(420px, 100%);
+  border-radius: 14px;
+  border: 1px solid #c9ad7f;
+  background: #fff7e6;
+  box-shadow: 0 16px 35px rgba(33, 23, 16, 0.35);
+  padding: 20px;
+}
+
+.modal__title {
+  margin-bottom: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  color: #8a1f11;
+}
+
+.modal__actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

@@ -1,0 +1,41 @@
+@use './variables' as *;
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid $border;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff8e6;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(215, 190, 145, 0.45);
+}
+
+.table thead th {
+  font-family: 'Cinzel', serif;
+  color: #fff4d8;
+  background: #3b251a;
+}
+
+.table tbody tr:hover {
+  background: rgba(205, 162, 102, 0.12);
+}
+
+.actions-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.table-empty {
+  text-align: center;
+  color: $text-muted;
+}

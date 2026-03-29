@@ -1,0 +1,52 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.12s ease, opacity 0.12s ease, background-color 0.12s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn--add {
+  color: #fff6e5;
+  background: #3d6d2b;
+  border-color: #335b24;
+}
+
+.btn--edit {
+  color: #fff7e2;
+  background: #856315;
+  border-color: #6a4f10;
+}
+
+.btn--delete {
+  color: #fff1eb;
+  background: #8a1f11;
+  border-color: #741607;
+}
+
+.btn--ghost {
+  color: #4b2f24;
+  background: transparent;
+  border-color: #b7955e;
+}
+
+.btn--ghost:hover {
+  background: rgba(205, 162, 102, 0.12);
+}

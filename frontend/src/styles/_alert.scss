@@ -1,0 +1,12 @@
+.alert {
+  margin-bottom: 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.alert--error {
+  color: #6c1309;
+  background: #fbe2dd;
+  border-color: #d79086;
+}

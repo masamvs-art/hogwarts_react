@@ -72,6 +72,14 @@ main {
   color: $text-muted;
 }
 
+.page-header {
+  margin-bottom: 18px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -105,4 +113,22 @@ main {
 .home-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 14px 28px rgba(35, 23, 16, 0.22);
+}
+
+@media (max-width: 720px) {
+  .topbar__nav {
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 0;
+  }
+
+  .topbar__links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .page-header {
+    flex-direction: column;
+  }
 }

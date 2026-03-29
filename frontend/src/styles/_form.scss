@@ -1,0 +1,45 @@
+@use './variables' as *;
+
+.form {
+  max-width: 600px;
+  padding: 18px;
+  border: 1px solid $border;
+  border-radius: 12px;
+  background: #fff7e1;
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form__field span {
+  font-weight: 600;
+}
+
+.form__field input,
+.form__field select,
+.form__field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid $border;
+  border-radius: 8px;
+  font: inherit;
+  color: $text-primary;
+  background: #fffcf3;
+}
+
+.form__field input:focus,
+.form__field select:focus,
+.form__field textarea:focus {
+  outline: 2px solid rgba(138, 31, 17, 0.25);
+  border-color: $accent;
+}
+
+.form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
