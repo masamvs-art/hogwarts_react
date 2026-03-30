@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { createMastery } from '@/api/mastery'
 import { getStudents } from '@/api/student'
 import { getSpells } from '@/api/spell'
+import AnimatedPage from '@/components/AnimatedPage'
 
 function MasteryAdd() {
   const navigate = useNavigate()
@@ -92,7 +93,7 @@ function MasteryAdd() {
   }
 
   return (
-    <section>
+    <AnimatedPage className="form-page">
       <h1 className="title">Добавить освоение</h1>
       <p className="subtitle">Создайте новую связь между студентом и заклинанием.</p>
 
@@ -135,7 +136,7 @@ function MasteryAdd() {
           </div>
         </form>
       )}
-    </section>
+    </AnimatedPage>
   )
 }
 

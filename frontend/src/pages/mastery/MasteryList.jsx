@@ -1,9 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom'
+﻿import { Link, useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { useEffect, useMemo, useState } from 'react'
 import { getMasteries, deleteMastery } from '@/api/mastery'
 import { getStudents } from '@/api/student'
 import { getSpells } from '@/api/spell'
 import DeleteModal from '@/components/DeleteModal'
+import AnimatedPage from '@/components/AnimatedPage'
 
 function MasteryList() {
   const navigate = useNavigate()
@@ -89,7 +91,7 @@ function MasteryList() {
   }
 
   return (
-    <section>
+    <AnimatedPage>
       <div className="page-header">
         <div>
           <h1 className="title">Освоение</h1>
@@ -102,7 +104,7 @@ function MasteryList() {
 
       {error && <div className="alert alert--error">{error}</div>}
 
-      <div className="filter-grid">
+      <div className="filter-grid panel">
         <label className="form__field">
           <span>Студент</span>
           <select name="student_id" value={filters.student_id} onChange={onFilterChange}>
@@ -131,7 +133,7 @@ function MasteryList() {
       {loading ? (
         <p>Загрузка...</p>
       ) : (
-        <div className="table-wrap">
+        <div className="table-wrap panel">
           <table className="table">
             <thead>
               <tr>
@@ -143,19 +145,24 @@ function MasteryList() {
             </thead>
             <tbody>
               {items.map((item, index) => (
-                <tr key={item.id}>
+                <motion.tr
+                  key={item.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: index * 0.03, duration: 0.25 }}
+                >
                   <td>{index + 1}</td>
                   <td>{item.student_name}</td>
                   <td>{item.spell_name}</td>
                   <td className="actions-cell">
                     <Link className="btn btn--edit" to={`/mastery/edit/${item.id}`}>
-                      Edit
+                      Изменить
                     </Link>
                     <button type="button" className="btn btn--delete" onClick={() => setSelected(item)}>
-                      Delete
+                      Удалить
                     </button>
                   </td>
-                </tr>
+                </motion.tr>
               ))}
               {items.length === 0 && (
                 <tr>
@@ -178,7 +185,7 @@ function MasteryList() {
           loading={deleting}
         />
       )}
-    </section>
+    </AnimatedPage>
   )
 }
 

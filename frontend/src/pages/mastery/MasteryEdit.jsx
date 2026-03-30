@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { getMastery, updateMastery } from '@/api/mastery'
 import { getStudents } from '@/api/student'
 import { getSpells } from '@/api/spell'
+import AnimatedPage from '@/components/AnimatedPage'
 
 function MasteryEdit() {
   const { id } = useParams()
@@ -100,7 +101,7 @@ function MasteryEdit() {
   }
 
   return (
-    <section>
+    <AnimatedPage className="form-page">
       <h1 className="title">Редактировать освоение</h1>
       <p className="subtitle">Измените связь между студентом и заклинанием.</p>
 
@@ -143,7 +144,7 @@ function MasteryEdit() {
           </div>
         </form>
       )}
-    </section>
+    </AnimatedPage>
   )
 }
 

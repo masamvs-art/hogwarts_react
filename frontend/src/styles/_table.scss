@@ -2,44 +2,92 @@
 
 .table-wrap {
   overflow-x: auto;
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  padding: 2px;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid rgba(201, 168, 76, 0.35);
-  border-radius: 12px;
+  border: 1px solid rgba(255, 214, 136, 0.24);
+  border-radius: 14px;
   overflow: hidden;
-  background: rgba(18, 12, 8, 0.82);
+  background: rgba(14, 10, 7, 0.6);
 }
 
 .table th,
 .table td {
-  padding: 12px;
+  padding: 13px 14px;
   text-align: left;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(255, 214, 136, 0.13);
 }
 
 .table thead th {
   font-family: $font-heading;
-  color: #f4d892;
-  background: rgba(78, 53, 20, 0.66);
+  color: #f8dfac;
+  background: linear-gradient(140deg, rgba(79, 56, 25, 0.82), rgba(52, 35, 15, 0.72));
 }
 
 .table tbody tr {
-  background: rgba(13, 10, 7, 0.35);
+  background: rgba(13, 10, 7, 0.2);
+  transition: background-color 0.18s ease;
 }
 
 .table tbody tr:hover {
-  background: rgba(201, 168, 76, 0.12);
+  background: rgba(255, 214, 136, 0.1);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .actions-cell {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .table-empty {
   text-align: center;
   color: $text-muted;
+}
+
+.house-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 128px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 214, 136, 0.3);
+  color: #f4ead4;
+  background: rgba(255, 214, 136, 0.1);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.house-badge--gryffindor {
+  border-color: rgba($house-gryffindor-accent, 0.62);
+  background: linear-gradient(135deg, rgba($house-gryffindor-main, 0.9), rgba($house-gryffindor-main, 0.64));
+  color: #ffe9b4;
+}
+
+.house-badge--slytherin {
+  border-color: rgba($house-slytherin-accent, 0.56);
+  background: linear-gradient(135deg, rgba($house-slytherin-main, 0.92), rgba($house-slytherin-main, 0.62));
+  color: #eef5ec;
+}
+
+.house-badge--ravenclaw {
+  border-color: rgba($house-ravenclaw-accent, 0.62);
+  background: linear-gradient(135deg, rgba($house-ravenclaw-main, 0.92), rgba($house-ravenclaw-main, 0.66));
+  color: #f0e4c8;
+}
+
+.house-badge--hufflepuff {
+  border-color: rgba($house-hufflepuff-accent, 0.62);
+  background: linear-gradient(135deg, rgba($house-hufflepuff-main, 0.9), rgba($house-hufflepuff-main, 0.64));
+  color: #ffe7ac;
 }

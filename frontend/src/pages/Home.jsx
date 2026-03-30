@@ -1,5 +1,20 @@
-import { Link } from 'react-router-dom'
+﻿import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { useEffect } from 'react'
+import AnimatedPage from '@/components/AnimatedPage'
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  show: (index) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.42,
+      delay: 0.08 + index * 0.08,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+}
 
 function Home() {
   useEffect(() => {
@@ -8,38 +23,53 @@ function Home() {
 
   const cards = [
     {
-      title: '⚡ Заклинания',
-      description: 'Справочник магических заклинаний и их обновление.',
+      title: 'Заклинания',
+      icon: '⚡',
+      description: 'Справочник магических заклинаний и управление записями.',
       to: '/spell',
     },
     {
-      title: '🧙 Студенты',
-      description: 'Учёт учеников, факультетов и курсов обучения.',
+      title: 'Студенты',
+      icon: '🧙',
+      description: 'Факультеты, курсы и статусы студентов Хогвартса.',
       to: '/student',
     },
     {
-      title: '🔮 Освоение заклинаний',
-      description: 'Связь учеников и изученных ими заклинаний.',
+      title: 'Освоение',
+      icon: '🔮',
+      description: 'Связи студентов с изученными заклинаниями.',
       to: '/mastery',
     },
   ]
 
   return (
-    <section>
+    <AnimatedPage>
       <h1 className="title">Школа Чародейства и Волшебства</h1>
-      <p className="subtitle">Выберите раздел, чтобы начать работу с Hogwarts CRUD.</p>
+      <p className="subtitle">
+        Управляйте заклинаниями, студентами и прогрессом освоения в одном месте.
+      </p>
 
       <div className="card-grid">
-        {cards.map((card) => (
+        {cards.map((card, index) => (
           <Link key={card.to} to={card.to} className="card-link">
-            <article className="home-card">
-              <h2>{card.title}</h2>
+            <motion.article
+              className="home-card"
+              variants={cardVariants}
+              initial="hidden"
+              animate="show"
+              custom={index}
+              whileHover={{ y: -6, scale: 1.01 }}
+              whileTap={{ scale: 0.985 }}
+            >
+              <h2>
+                <span className="card-icon">{card.icon}</span> {card.title}
+              </h2>
               <p>{card.description}</p>
-            </article>
+            </motion.article>
           </Link>
         ))}
       </div>
-    </section>
+    </AnimatedPage>
   )
 }
 

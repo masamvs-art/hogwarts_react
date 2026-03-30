@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { createSpell } from '@/api/spell'
+import AnimatedPage from '@/components/AnimatedPage'
 
 function SpellAdd() {
   const navigate = useNavigate()
@@ -47,7 +48,7 @@ function SpellAdd() {
   }
 
   return (
-    <section>
+    <AnimatedPage className="form-page">
       <h1 className="title">Добавить заклинание</h1>
       <p className="subtitle">Создайте новую запись в справочнике.</p>
 
@@ -75,7 +76,7 @@ function SpellAdd() {
           </button>
         </div>
       </form>
-    </section>
+    </AnimatedPage>
   )
 }
 

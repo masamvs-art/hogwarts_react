@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { createStudent } from '@/api/student'
+import AnimatedPage from '@/components/AnimatedPage'
 
 const HOUSES = ['Гриффиндор', 'Слизерин', 'Когтевран', 'Пуффендуй']
 
@@ -66,7 +67,7 @@ function StudentAdd() {
   }
 
   return (
-    <section>
+    <AnimatedPage className="form-page">
       <h1 className="title">Добавить студента</h1>
       <p className="subtitle">Создание новой записи студента.</p>
 
@@ -117,7 +118,7 @@ function StudentAdd() {
           </button>
         </div>
       </form>
-    </section>
+    </AnimatedPage>
   )
 }
 

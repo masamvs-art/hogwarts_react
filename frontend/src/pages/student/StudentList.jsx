@@ -1,7 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom'
+﻿import { Link, useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { useEffect, useMemo, useState } from 'react'
 import { deleteStudent, getStudents } from '@/api/student'
 import DeleteModal from '@/components/DeleteModal'
+import AnimatedPage from '@/components/AnimatedPage'
 
 const HOUSE_OPTIONS = ['', 'Гриффиндор', 'Слизерин', 'Когтевран', 'Пуффендуй']
 const DELETED_OPTIONS = [
@@ -9,6 +11,15 @@ const DELETED_OPTIONS = [
   { value: '0', label: 'Нет' },
   { value: '1', label: 'Да' },
 ]
+
+function getHouseClassName(house) {
+  const value = String(house || '').toLowerCase()
+  if (value.includes('гриффиндор')) return 'house-badge house-badge--gryffindor'
+  if (value.includes('слизерин')) return 'house-badge house-badge--slytherin'
+  if (value.includes('когтевран')) return 'house-badge house-badge--ravenclaw'
+  if (value.includes('пуффендуй')) return 'house-badge house-badge--hufflepuff'
+  return 'house-badge'
+}
 
 function StudentList() {
   const navigate = useNavigate()
@@ -83,7 +94,7 @@ function StudentList() {
   }
 
   return (
-    <section>
+    <AnimatedPage>
       <div className="page-header">
         <div>
           <h1 className="title">Студенты</h1>
@@ -96,7 +107,7 @@ function StudentList() {
 
       {error && <div className="alert alert--error">{error}</div>}
 
-      <div className="filter-grid">
+      <div className="filter-grid panel">
         <label className="form__field">
           <span>Имя</span>
           <input name="name" value={filters.name} onChange={onFilterChange} />
@@ -134,7 +145,7 @@ function StudentList() {
       {loading ? (
         <p>Загрузка...</p>
       ) : (
-        <div className="table-wrap">
+        <div className="table-wrap panel">
           <table className="table">
             <thead>
               <tr>
@@ -150,27 +161,34 @@ function StudentList() {
             </thead>
             <tbody>
               {items.map((student, index) => (
-                <tr key={student.id}>
+                <motion.tr
+                  key={student.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: index * 0.02, duration: 0.25 }}
+                >
                   <td>{index + 1}</td>
                   <td>{student.name}</td>
                   <td>{student.surname}</td>
-                  <td>{student.house}</td>
+                  <td>
+                    <span className={getHouseClassName(student.house)}>{student.house}</span>
+                  </td>
                   <td>{student.course ?? '—'}</td>
                   <td>{Number(student.is_deleted) === 1 ? 'Да' : 'Нет'}</td>
                   <td>{student.spell_count}</td>
                   <td className="actions-cell">
                     <Link className="btn btn--edit" to={`/student/edit/${student.id}`}>
-                      Edit
+                      Изменить
                     </Link>
                     <button
                       type="button"
                       className="btn btn--delete"
                       onClick={() => setSelected(student)}
                     >
-                      Delete
+                      Удалить
                     </button>
                   </td>
-                </tr>
+                </motion.tr>
               ))}
               {items.length === 0 && (
                 <tr>
@@ -193,7 +211,7 @@ function StudentList() {
           loading={deleting}
         />
       )}
-    </section>
+    </AnimatedPage>
   )
 }
 

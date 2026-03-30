@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getStudent, updateStudent } from '@/api/student'
+import AnimatedPage from '@/components/AnimatedPage'
 
 const HOUSES = ['Гриффиндор', 'Слизерин', 'Когтевран', 'Пуффендуй']
 
@@ -95,7 +96,7 @@ function StudentEdit() {
   }
 
   return (
-    <section>
+    <AnimatedPage className="form-page">
       <h1 className="title">Редактировать студента</h1>
       <p className="subtitle">Обновите данные студента и сохраните изменения.</p>
 
@@ -161,7 +162,7 @@ function StudentEdit() {
           </div>
         </form>
       )}
-    </section>
+    </AnimatedPage>
   )
 }
 

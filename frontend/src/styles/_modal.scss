@@ -1,28 +1,28 @@
-.modal-overlay {
+﻿.modal-overlay {
   position: fixed;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(21, 14, 10, 0.64);
-  z-index: 100;
+  background: rgba(8, 6, 5, 0.72);
+  z-index: 120;
   padding: 16px;
 }
 
 .modal {
-  width: min(420px, 100%);
-  border-radius: 14px;
-  border: 1px solid #c9ad7f;
-  background: #fff7e6;
-  box-shadow: 0 16px 35px rgba(33, 23, 16, 0.35);
-  padding: 20px;
+  width: min(440px, 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 214, 136, 0.34);
+  background: linear-gradient(150deg, rgba(22, 16, 12, 0.96), rgba(15, 11, 8, 0.96));
+  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.45);
+  padding: 22px;
 }
 
 .modal__title {
   margin-bottom: 10px;
   font-family: 'Cinzel', serif;
-  font-size: 1.25rem;
-  color: #8a1f11;
+  font-size: 1.26rem;
+  color: #ffd795;
 }
 
 .modal__actions {

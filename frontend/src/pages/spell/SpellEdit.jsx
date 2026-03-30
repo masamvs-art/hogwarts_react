@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getSpell, updateSpell } from '@/api/spell'
+import AnimatedPage from '@/components/AnimatedPage'
 
 function SpellEdit() {
   const { id } = useParams()
@@ -66,7 +67,7 @@ function SpellEdit() {
   }
 
   return (
-    <section>
+    <AnimatedPage className="form-page">
       <h1 className="title">Редактировать заклинание</h1>
       <p className="subtitle">Измените название и сохраните изменения.</p>
 
@@ -97,7 +98,7 @@ function SpellEdit() {
           </div>
         </form>
       )}
-    </section>
+    </AnimatedPage>
   )
 }
 

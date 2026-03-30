@@ -1,7 +1,9 @@
-import { Link, useNavigate } from 'react-router-dom'
+﻿import { Link, useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { getSpells, removeSpell } from '@/api/spell'
 import DeleteModal from '@/components/DeleteModal'
+import AnimatedPage from '@/components/AnimatedPage'
 
 function SpellList() {
   const navigate = useNavigate()
@@ -51,7 +53,7 @@ function SpellList() {
   }
 
   return (
-    <section>
+    <AnimatedPage>
       <div className="page-header">
         <div>
           <h1 className="title">Заклинания</h1>
@@ -67,7 +69,7 @@ function SpellList() {
       {loading ? (
         <p>Загрузка...</p>
       ) : (
-        <div className="table-wrap">
+        <div className="table-wrap panel">
           <table className="table">
             <thead>
               <tr>
@@ -78,22 +80,27 @@ function SpellList() {
             </thead>
             <tbody>
               {items.map((spell, index) => (
-                <tr key={spell.id}>
+                <motion.tr
+                  key={spell.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: index * 0.03, duration: 0.25 }}
+                >
                   <td>{index + 1}</td>
                   <td>{spell.name}</td>
                   <td className="actions-cell">
                     <Link className="btn btn--edit" to={`/spell/edit/${spell.id}`}>
-                      Edit
+                      Изменить
                     </Link>
                     <button
                       type="button"
                       className="btn btn--delete"
                       onClick={() => setSelected(spell)}
                     >
-                      Delete
+                      Удалить
                     </button>
                   </td>
-                </tr>
+                </motion.tr>
               ))}
               {items.length === 0 && (
                 <tr>
@@ -110,13 +117,13 @@ function SpellList() {
       {selected && (
         <DeleteModal
           title="Удалить заклинание?"
-          text={`"${selected.name}" будет удалено без возможности восстановления.`}
+          text={`\"${selected.name}\" будет удалено без возможности восстановления.`}
           onCancel={() => setSelected(null)}
           onConfirm={confirmDelete}
           loading={deleting}
         />
       )}
-    </section>
+    </AnimatedPage>
   )
 }
 
