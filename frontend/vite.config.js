@@ -18,7 +18,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://hogwarts_react.local',
+        target: 'http://hogwarts-react.local',
         changeOrigin: true,
       },
     },
