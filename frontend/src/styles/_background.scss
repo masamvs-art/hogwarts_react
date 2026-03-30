@@ -1,0 +1,6 @@
+body::before {
+  background:
+    linear-gradient(120deg, rgba(10, 10, 12, 0.72), rgba(10, 10, 12, 0.64)),
+    url('../assets/bg.png') center/cover no-repeat;
+  background-attachment: fixed;
+}
