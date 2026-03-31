@@ -82,5 +82,5 @@ npm run build
 
 - `api/` — PHP endpoint-ы (`spell`, `student`, `mastery`)
 - `frontend/` — React + Vite + SCSS
-- `.env` — локальные настройки БД
+- `.env` — переменные окружения
 - `.env.example` — шаблон
