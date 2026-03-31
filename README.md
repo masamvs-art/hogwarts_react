@@ -7,6 +7,7 @@
 - OSPanel с доменом `hogwarts.local`
 - PHP 8.x + MySQL
 - Node.js + npm
+  https://nodejs.org/en/download
 
 ## Быстрый старт
 
